@@ -6,6 +6,7 @@ import TagListPage from "../pages/tags/TagListPage.vue";
 import CollectionListPage from "../pages/collections/CollectionListPage.vue";
 import CollectionEditPage from "../pages/collections/CollectionEditPage.vue";
 import CollectionResultsPage from "../pages/collections/CollectionResultsPage.vue";
+import SettingsPage from "../pages/settings/SettingsPage.vue";
 
 const routes = [
   { path: "/", name: "NoteList", component: NoteListPage },
@@ -16,6 +17,7 @@ const routes = [
   { path: "/collections/new", name: "CollectionCreate", component: CollectionEditPage },
   { path: "/collections/:id/edit", name: "CollectionEdit", component: CollectionEditPage },
   { path: "/collections/:id/results", name: "CollectionResults", component: CollectionResultsPage },
+  { path: "/settings", name: "Settings", component: SettingsPage },
 ];
 
 const router = createRouter({

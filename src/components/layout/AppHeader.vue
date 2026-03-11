@@ -14,12 +14,13 @@ const pageTitle = computed(() => {
     CollectionCreate: '新建合集',
     CollectionEdit: '编辑合集',
     CollectionResults: '合集结果',
+    Settings: '设置',
   };
   return map[route.name as string] || '笔记';
 });
 
 const showBack = computed(() => {
-  const noBack = ['NoteList', 'TagList', 'CollectionList'];
+  const noBack = ['NoteList', 'TagList', 'CollectionList', 'Settings'];
   return !noBack.includes(route.name as string);
 });
 </script>

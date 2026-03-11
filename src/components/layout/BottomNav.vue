@@ -4,6 +4,7 @@ import { markRaw } from 'vue';
 import IconNote from '../icons/IconNote.vue';
 import IconTag from '../icons/IconTag.vue';
 import IconCollection from '../icons/IconCollection.vue';
+import IconSettings from '../icons/IconSettings.vue';
 
 const route = useRoute();
 
@@ -11,6 +12,7 @@ const navItems = [
   { to: '/', name: 'NoteList', label: '笔记', icon: markRaw(IconNote) },
   { to: '/tags', name: 'TagList', label: '标签', icon: markRaw(IconTag) },
   { to: '/collections', name: 'CollectionList', label: '合集', icon: markRaw(IconCollection) },
+  { to: '/settings', name: 'Settings', label: '设置', icon: markRaw(IconSettings) },
 ];
 
 function isActive(itemName: string) {
@@ -19,6 +21,7 @@ function isActive(itemName: string) {
   if (itemName === 'NoteList') return routeName.startsWith('Note');
   if (itemName === 'TagList') return routeName.startsWith('Tag');
   if (itemName === 'CollectionList') return routeName.startsWith('Collection');
+  if (itemName === 'Settings') return routeName.startsWith('Settings');
   return false;
 }
 </script>

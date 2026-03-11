@@ -4,6 +4,7 @@ import { markRaw } from 'vue';
 import IconNote from '../icons/IconNote.vue';
 import IconTag from '../icons/IconTag.vue';
 import IconCollection from '../icons/IconCollection.vue';
+import IconSettings from '../icons/IconSettings.vue';
 
 const route = useRoute();
 
@@ -11,6 +12,7 @@ const navItems = [
   { to: '/', name: 'NoteList', label: '笔记', icon: markRaw(IconNote) },
   { to: '/tags', name: 'TagList', label: '标签', icon: markRaw(IconTag) },
   { to: '/collections', name: 'CollectionList', label: '合集', icon: markRaw(IconCollection) },
+  { to: '/settings', name: 'Settings', label: '设置', icon: markRaw(IconSettings) },
 ];
 
 function isActive(itemName: string) {
@@ -19,6 +21,7 @@ function isActive(itemName: string) {
   if (itemName === 'NoteList') return routeName.startsWith('Note');
   if (itemName === 'TagList') return routeName.startsWith('Tag');
   if (itemName === 'CollectionList') return routeName.startsWith('Collection');
+  if (itemName === 'Settings') return routeName.startsWith('Settings');
   return false;
 }
 </script>
@@ -33,17 +36,22 @@ function isActive(itemName: string) {
           <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
         </svg>
       </div>
-      <span class="brand-text">笔记</span>
+      <span class="brand-text">ConNote</span>
     </div>
 
     <div class="nav-list">
-      <router-link
-        v-for="item in navItems"
-        :key="item.name"
-        :to="item.to"
-        class="nav-item"
-        :class="{ active: isActive(item.name) }"
-      >
+      <router-link v-for="item in navItems.filter(i => i.name !== 'Settings')" :key="item.name" :to="item.to"
+        class="nav-item" :class="{ active: isActive(item.name) }">
+        <component :is="item.icon" :size="20" />
+        <span>{{ item.label }}</span>
+      </router-link>
+    </div>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="nav-list secondary-list">
+      <router-link v-for="item in navItems.filter(i => i.name === 'Settings')" :key="item.name" :to="item.to"
+        class="nav-item" :class="{ active: isActive(item.name) }">
         <component :is="item.icon" :size="20" />
         <span>{{ item.label }}</span>
       </router-link>
@@ -61,6 +69,27 @@ function isActive(itemName: string) {
   flex-direction: column;
   flex-shrink: 0;
   overflow-y: auto;
+}
+
+.sidebar-spacer {
+  flex: 1;
+}
+
+.secondary-list {
+  margin-top: auto;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+}
+
+@media (max-width: 767px) {
+  .sidebar-spacer {
+    display: none;
+  }
+
+  .secondary-list {
+    margin-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 .sidebar-brand {

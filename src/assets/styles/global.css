@@ -65,6 +65,19 @@
   --desktop-breakpoint: 768px;
 }
 
+[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #0F172A;
+  --color-surface: #1E293B;
+  --color-border: #334155;
+  --color-border-light: #334155;
+  --color-text: #F8FAFC;
+  --color-text-secondary: #94A3B8;
+  --color-text-tertiary: #64748B;
+  --color-primary-bg: #1E1B4B;
+  --color-primary-surface: #312E81;
+}
+
 /* ── Reset ── */
 
 *, *::before, *::after {
